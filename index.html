@@ -1,0 +1,2129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luchi González Ramella — Nutricionista</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@200;300;400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,200;0,9..144,300;0,9..144,400;1,9..144,200;1,9..144,300&display=swap" rel="stylesheet">
+
+<style>
+/* ─────────────────────────────────────────────
+   RESET & BASE
+───────────────────────────────────────────── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --teal:       #2BB3A8;
+  --teal-mid:   #1E9990;
+  --teal-dark:  #0D4F4B;
+  --rose:       #E43F9C;
+  --cream:      #F7F4EF;
+  --beige:      #E8E0D5;
+  --ink:        #0A0A09;
+  --ink-60:     rgba(10,10,9,0.6);
+  --ink-30:     rgba(10,10,9,0.3);
+  --ink-10:     rgba(10,10,9,0.07);
+  --white:      #FFFFFF;
+  --deep:       #071412;
+
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body:    'Sora', system-ui, sans-serif;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.45, 0, 0.55, 1);
+}
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--white);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Grain overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.5;
+  mix-blend-mode: multiply;
+}
+
+/* ─────────────────────────────────────────────
+   NAV
+───────────────────────────────────────────── */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 28px 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.5s var(--ease-out);
+}
+.nav.solid {
+  background: rgba(255,255,255,0.94);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  padding: 18px 60px;
+  border-bottom: 1px solid var(--ink-10);
+}
+
+.nav-logo {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--white);
+  text-decoration: none;
+  transition: color 0.4s;
+}
+.nav.solid .nav-logo { color: var(--ink); }
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.nav.solid .nav-links a { color: var(--ink-60); }
+.nav-links a:hover { color: var(--teal) !important; }
+
+.nav-btn {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  padding: 11px 24px;
+  border-radius: 100px;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  color: var(--white);
+  text-decoration: none;
+  transition: all 0.3s;
+  backdrop-filter: blur(8px);
+}
+.nav.solid .nav-btn {
+  background: var(--teal);
+  border-color: var(--teal);
+  color: var(--white);
+}
+.nav-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(43,179,168,0.35);
+}
+
+@media (max-width: 768px) {
+  .nav { padding: 20px 24px; }
+  .nav.solid { padding: 14px 24px; }
+  .nav-links { display: none; }
+}
+
+/* ─────────────────────────────────────────────
+   HERO
+───────────────────────────────────────────── */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  background: var(--deep);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+}
+
+/* Animated gradient mesh */
+.hero-mesh {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 15% 20%, rgba(43,179,168,0.18) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 85% 70%, rgba(43,179,168,0.10) 0%, transparent 55%),
+    radial-gradient(ellipse 40% 50% at 50% 50%, rgba(228,63,156,0.04) 0%, transparent 70%),
+    linear-gradient(160deg, #071412 0%, #0D2422 40%, #071412 100%);
+  animation: meshShift 12s ease-in-out infinite alternate;
+}
+@keyframes meshShift {
+  0%  { background-position: 0% 0%; }
+  100%{ background-position: 100% 100%; }
+}
+
+/* Decorative circle */
+.hero-ring {
+  position: absolute;
+  width: 700px;
+  height: 700px;
+  border: 1px solid rgba(43,179,168,0.08);
+  border-radius: 50%;
+  top: 50%;
+  right: -180px;
+  transform: translateY(-50%);
+  animation: slowSpin 30s linear infinite;
+}
+.hero-ring::before {
+  content: '';
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border: 1px solid rgba(43,179,168,0.06);
+  border-radius: 50%;
+  top: 100px;
+  left: 100px;
+}
+@keyframes slowSpin {
+  to { transform: translateY(-50%) rotate(360deg); }
+}
+
+/* Dot grid */
+.hero-dots {
+  position: absolute;
+  top: 0; right: 0;
+  width: 40%;
+  height: 100%;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: linear-gradient(to left, rgba(0,0,0,0.4), transparent 80%);
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  padding: 0 60px 80px;
+  max-width: 1300px;
+  width: 100%;
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 48px;
+  opacity: 0;
+  animation: heroFade 1s var(--ease-out) 0.3s forwards;
+}
+.hero-eyebrow-pill {
+  background: rgba(43,179,168,0.15);
+  border: 1px solid rgba(43,179,168,0.25);
+  color: var(--teal);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 100px;
+}
+.hero-eyebrow-line {
+  width: 40px;
+  height: 1px;
+  background: rgba(255,255,255,0.2);
+}
+.hero-eyebrow-text {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 0.08em;
+  font-weight: 300;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-weight: 200;
+  font-size: clamp(3.8rem, 8vw, 8rem);
+  line-height: 1.02;
+  color: var(--white);
+  max-width: 900px;
+  margin-bottom: 36px;
+  opacity: 0;
+  animation: heroSlide 1s var(--ease-out) 0.5s forwards;
+}
+.hero-title em {
+  font-style: italic;
+  font-optical-sizing: auto;
+  color: rgba(255,255,255,0.45);
+}
+.hero-title .accent-word {
+  color: var(--teal);
+}
+
+.hero-sub-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 48px;
+  opacity: 0;
+  animation: heroFade 1s var(--ease-out) 0.8s forwards;
+}
+.hero-sub {
+  font-size: 0.95rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.8;
+  max-width: 380px;
+}
+
+.hero-cta-group {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-shrink: 0;
+}
+.btn-hero {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--teal);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  padding: 16px 32px;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: all 0.35s var(--ease-out);
+  white-space: nowrap;
+}
+.btn-hero:hover {
+  background: var(--teal-mid);
+  transform: translateY(-2px);
+  box-shadow: 0 20px 48px rgba(43,179,168,0.4);
+}
+.btn-hero svg { transition: transform 0.3s; }
+.btn-hero:hover svg { transform: translateX(4px); }
+
+.btn-hero-ghost {
+  font-size: 0.78rem;
+  font-weight: 400;
+  color: rgba(255,255,255,0.5);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  transition: color 0.3s;
+  white-space: nowrap;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+  padding-bottom: 2px;
+}
+.btn-hero-ghost:hover { color: var(--white); border-color: rgba(255,255,255,0.4); }
+
+/* Bottom bar */
+.hero-bar {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.08), transparent);
+}
+
+/* Stats strip */
+.hero-stats-strip {
+  position: absolute;
+  top: 50%;
+  right: 60px;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  opacity: 0;
+  animation: heroFade 1s var(--ease-out) 1.1s forwards;
+}
+.hero-stat-item {
+  text-align: right;
+}
+.hero-stat-num {
+  font-family: var(--font-display);
+  font-size: 2.8rem;
+  font-weight: 200;
+  color: var(--white);
+  line-height: 1;
+}
+.hero-stat-label {
+  font-size: 0.66rem;
+  color: rgba(255,255,255,0.3);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-top: 4px;
+}
+.hero-stat-line {
+  width: 24px;
+  height: 1px;
+  background: var(--teal);
+  margin: 6px 0 0 auto;
+  opacity: 0.5;
+}
+
+@keyframes heroFade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes heroSlide {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Scroll cue */
+.scroll-cue {
+  position: absolute;
+  bottom: 36px;
+  left: 60px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  opacity: 0;
+  animation: heroFade 1s var(--ease-out) 1.4s forwards;
+}
+.scroll-cue-track {
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
+  animation: trackPulse 2.5s ease-in-out infinite;
+}
+@keyframes trackPulse {
+  0%,100%{ opacity: 0.3; transform: scaleY(1); }
+  50%{ opacity: 0.8; }
+}
+.scroll-cue-text {
+  font-size: 0.65rem;
+  color: rgba(255,255,255,0.25);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  writing-mode: vertical-lr;
+  transform: rotate(180deg);
+}
+
+@media (max-width: 900px) {
+  .hero-inner { padding: 0 24px 60px; }
+  .hero-sub-row { flex-direction: column; align-items: flex-start; gap: 28px; }
+  .hero-stats-strip { display: none; }
+  .scroll-cue { left: 24px; }
+}
+
+/* ─────────────────────────────────────────────
+   UTILITY
+───────────────────────────────────────────── */
+.section-wrap {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 60px;
+}
+@media(max-width:768px){ .section-wrap{ padding: 0 24px; } }
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 28px;
+}
+.eyebrow::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: var(--teal);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+}
+.reveal.on {
+  opacity: 1;
+  transform: none;
+}
+.d1 { transition-delay: 0.1s; }
+.d2 { transition-delay: 0.2s; }
+.d3 { transition-delay: 0.3s; }
+.d4 { transition-delay: 0.4s; }
+.d5 { transition-delay: 0.5s; }
+
+/* ─────────────────────────────────────────────
+   MARQUEE STRIP
+───────────────────────────────────────────── */
+.marquee-strip {
+  overflow: hidden;
+  border-top: 1px solid var(--ink-10);
+  border-bottom: 1px solid var(--ink-10);
+  padding: 20px 0;
+  background: var(--cream);
+}
+.marquee-inner {
+  display: flex;
+  gap: 0;
+  white-space: nowrap;
+  animation: marqueeScroll 22s linear infinite;
+}
+.marquee-inner span {
+  display: inline-flex;
+  align-items: center;
+  gap: 32px;
+  padding: 0 32px;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-60);
+}
+.marquee-inner span::after {
+  content: '◆';
+  color: var(--teal);
+  font-size: 0.4rem;
+}
+@keyframes marqueeScroll {
+  to { transform: translateX(-50%); }
+}
+
+/* ─────────────────────────────────────────────
+   SOBRE MÍ
+───────────────────────────────────────────── */
+.about-section {
+  padding: 160px 0;
+  background: var(--white);
+}
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 100px;
+  align-items: center;
+}
+
+/* Photo side */
+.about-photo-col { position: relative; }
+
+.about-photo-frame {
+  position: relative;
+  aspect-ratio: 4/5;
+  border-radius: 2px;
+  overflow: hidden;
+  background: linear-gradient(160deg, #C5E8E6 0%, #9FD6D2 30%, #2BB3A8 100%);
+}
+.about-photo-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+.photo-placeholder-icon {
+  width: 64px;
+  height: 64px;
+  color: rgba(43,179,168,0.35);
+}
+.photo-placeholder-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(43,179,168,0.45);
+  font-weight: 500;
+}
+
+/* Decorative elements */
+.about-corner-box {
+  position: absolute;
+  bottom: -24px;
+  right: -24px;
+  width: 120px;
+  height: 120px;
+  border: 1px solid var(--beige);
+  z-index: -1;
+}
+.about-teal-bar {
+  position: absolute;
+  top: 48px;
+  left: -16px;
+  width: 4px;
+  height: 80px;
+  background: var(--teal);
+}
+
+/* Floating card */
+.about-float-card {
+  position: absolute;
+  bottom: 40px;
+  left: -40px;
+  background: var(--white);
+  border: 1px solid var(--ink-10);
+  border-radius: 16px;
+  padding: 24px 28px;
+  box-shadow: 0 32px 64px rgba(0,0,0,0.1), 0 0 0 1px rgba(0,0,0,0.03);
+  max-width: 220px;
+}
+.about-float-card-icon {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--teal), var(--teal-mid));
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+.about-float-card-icon svg { width: 18px; height: 18px; color: white; }
+.about-float-card h5 {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+.about-float-card p {
+  font-size: 0.72rem;
+  color: var(--ink-60);
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+/* Text side */
+.about-text-col {}
+
+.about-display {
+  font-family: var(--font-display);
+  font-weight: 200;
+  font-size: clamp(2.4rem, 4vw, 3.8rem);
+  line-height: 1.1;
+  color: var(--ink);
+  margin-bottom: 32px;
+}
+.about-display em {
+  font-style: italic;
+  color: var(--teal);
+}
+
+.about-body {
+  font-size: 0.92rem;
+  font-weight: 300;
+  color: var(--ink-60);
+  line-height: 1.9;
+  margin-bottom: 16px;
+}
+.about-body strong { color: var(--ink); font-weight: 500; }
+
+.about-rule {
+  width: 40px;
+  height: 1px;
+  background: var(--teal);
+  margin: 36px 0;
+}
+
+.about-values {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 8px;
+}
+.about-val {
+  padding: 20px;
+  border: 1px solid var(--ink-10);
+  border-radius: 12px;
+  transition: all 0.35s var(--ease-out);
+}
+.about-val:hover {
+  border-color: rgba(43,179,168,0.25);
+  background: rgba(43,179,168,0.03);
+  transform: translateY(-2px);
+}
+.about-val-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.about-val-text {
+  font-size: 0.75rem;
+  font-weight: 300;
+  color: var(--ink-60);
+  line-height: 1.6;
+}
+
+@media(max-width:900px){
+  .about-grid { grid-template-columns: 1fr; gap: 60px; }
+  .about-photo-col { max-width: 380px; margin: 0 auto; }
+  .about-float-card { display: none; }
+  .about-values { grid-template-columns: 1fr; }
+}
+
+/* ─────────────────────────────────────────────
+   SERVICIOS
+───────────────────────────────────────────── */
+.services-section {
+  padding: 160px 0;
+  background: var(--cream);
+  overflow: hidden;
+}
+.services-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 80px;
+  gap: 40px;
+}
+.services-header-left {}
+.services-title {
+  font-family: var(--font-display);
+  font-weight: 200;
+  font-size: clamp(2.4rem, 4vw, 3.8rem);
+  line-height: 1.1;
+  color: var(--ink);
+  margin-top: 8px;
+}
+.services-title em {
+  font-style: italic;
+  color: var(--ink-60);
+}
+.services-header-right {
+  max-width: 280px;
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: var(--ink-60);
+  line-height: 1.8;
+  flex-shrink: 0;
+  padding-bottom: 8px;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--ink-10);
+  border: 1px solid var(--ink-10);
+  border-radius: 20px;
+  overflow: hidden;
+}
+.service-card {
+  background: var(--cream);
+  padding: 48px 36px;
+  position: relative;
+  transition: all 0.4s var(--ease-out);
+  cursor: default;
+  overflow: hidden;
+}
+.service-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, rgba(43,179,168,0.06), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.service-card:hover {
+  background: var(--white);
+  transform: scale(1.01);
+  z-index: 2;
+  box-shadow: 0 40px 80px rgba(0,0,0,0.08);
+}
+.service-card:hover::after { opacity: 1; }
+
+.service-num {
+  font-family: var(--font-display);
+  font-size: 4.5rem;
+  font-weight: 200;
+  color: var(--beige);
+  line-height: 1;
+  margin-bottom: 32px;
+  transition: color 0.4s;
+}
+.service-card:hover .service-num { color: rgba(43,179,168,0.15); }
+
+.service-icon-wrap {
+  width: 48px;
+  height: 48px;
+  background: var(--white);
+  border: 1px solid var(--beige);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  transition: all 0.4s;
+}
+.service-card:hover .service-icon-wrap {
+  background: var(--teal);
+  border-color: var(--teal);
+}
+.service-icon-wrap svg {
+  width: 20px; height: 20px;
+  color: var(--teal);
+  transition: color 0.4s;
+}
+.service-card:hover .service-icon-wrap svg { color: var(--white); }
+
+.service-name {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+.service-desc {
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: var(--ink-60);
+  line-height: 1.75;
+}
+.service-arrow {
+  position: absolute;
+  bottom: 32px;
+  right: 32px;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--beige);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: all 0.35s var(--ease-out);
+}
+.service-card:hover .service-arrow {
+  opacity: 1;
+  transform: translateY(0);
+  border-color: rgba(43,179,168,0.3);
+}
+.service-arrow svg { width: 12px; height: 12px; color: var(--teal); }
+
+@media(max-width:1100px){ .services-grid{ grid-template-columns: repeat(2,1fr); } }
+@media(max-width:600px){ .services-grid{ grid-template-columns: 1fr; } }
+@media(max-width:768px){ .services-header{ flex-direction:column; align-items:flex-start; } }
+
+/* ─────────────────────────────────────────────
+   TED / AUTORIDAD  ← SECCIÓN ESTRELLA
+───────────────────────────────────────────── */
+.authority-section {
+  padding: 0;
+  background: var(--deep);
+  position: relative;
+  overflow: hidden;
+}
+
+.authority-top {
+  padding: 120px 60px 80px;
+  max-width: 1300px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.authority-headline {
+  font-family: var(--font-display);
+  font-weight: 200;
+  font-size: clamp(2.8rem, 5vw, 5.5rem);
+  line-height: 1.05;
+  color: var(--white);
+}
+.authority-headline em {
+  font-style: italic;
+  color: rgba(255,255,255,0.35);
+}
+.authority-headline .teal { color: var(--teal); }
+
+.authority-right {}
+.authority-right p {
+  font-size: 0.92rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.9;
+  margin-bottom: 40px;
+}
+.authority-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.authority-pill {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.7);
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  padding: 8px 18px;
+  border-radius: 100px;
+  transition: all 0.3s;
+}
+.authority-pill:hover {
+  border-color: rgba(43,179,168,0.4);
+  color: var(--teal);
+}
+.authority-pill.highlight {
+  background: rgba(43,179,168,0.12);
+  border-color: rgba(43,179,168,0.25);
+  color: var(--teal);
+}
+
+/* VIDEO EMBED */
+.video-container {
+  position: relative;
+  padding-bottom: 0;
+}
+.video-label {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 60px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.video-label-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(228,63,156,0.15);
+  border: 1px solid rgba(228,63,156,0.25);
+  color: var(--rose);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 6px 14px 6px 10px;
+  border-radius: 100px;
+}
+.video-label-tag-dot {
+  width: 6px; height: 6px;
+  background: var(--rose);
+  border-radius: 50%;
+  animation: blink 2s ease infinite;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+.video-label-title {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.4);
+  font-weight: 300;
+}
+
+.video-frame-wrap {
+  position: relative;
+  width: 100%;
+  padding-bottom: 50%;
+  background: #000;
+  overflow: hidden;
+}
+.video-frame-wrap iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+/* Play overlay (shown before interaction) */
+.video-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, rgba(7,20,18,0.7), rgba(7,20,18,0.3));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.3s;
+  z-index: 2;
+}
+.video-overlay.hidden { display: none; }
+.video-overlay:hover { background: rgba(7,20,18,0.2); }
+.video-play-btn {
+  width: 80px;
+  height: 80px;
+  background: rgba(255,255,255,0.12);
+  border: 2px solid rgba(255,255,255,0.3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(8px);
+  transition: all 0.3s;
+  margin-bottom: 20px;
+}
+.video-overlay:hover .video-play-btn {
+  background: var(--teal);
+  border-color: var(--teal);
+  transform: scale(1.08);
+}
+.video-play-btn svg { width: 28px; height: 28px; color: white; margin-left: 4px; }
+.video-overlay-title {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 200;
+  font-style: italic;
+  color: rgba(255,255,255,0.8);
+  text-align: center;
+}
+
+/* Stats row */
+.authority-stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.authority-stat {
+  padding: 48px 60px;
+  border-right: 1px solid rgba(255,255,255,0.06);
+  transition: background 0.3s;
+}
+.authority-stat:last-child { border-right: none; }
+.authority-stat:hover { background: rgba(255,255,255,0.02); }
+.authority-stat-num {
+  font-family: var(--font-display);
+  font-size: 4rem;
+  font-weight: 200;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.authority-stat-num sup {
+  font-size: 1.5rem;
+  color: var(--teal);
+  margin-left: 2px;
+}
+.authority-stat-label {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: rgba(255,255,255,0.35);
+  line-height: 1.5;
+}
+
+/* Testimonial quote */
+.authority-quote {
+  padding: 80px 60px;
+  max-width: 1300px;
+  margin: 0 auto;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+}
+.quote-mark-big {
+  font-family: var(--font-display);
+  font-size: 6rem;
+  line-height: 0.7;
+  color: var(--teal);
+  opacity: 0.3;
+  flex-shrink: 0;
+  margin-top: 8px;
+}
+.quote-body {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 200;
+  font-style: italic;
+  color: rgba(255,255,255,0.8);
+  line-height: 1.4;
+}
+.quote-attr {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.3);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-top: 20px;
+}
+
+@media(max-width:900px){
+  .authority-top { grid-template-columns: 1fr; gap: 48px; padding: 80px 24px 48px; }
+  .video-label { padding: 0 24px 20px; }
+  .authority-stats-row { grid-template-columns: 1fr; }
+  .authority-stat { padding: 32px 24px; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .authority-quote { padding: 48px 24px; }
+  .quote-body { font-size: 1.2rem; }
+}
+
+/* ─────────────────────────────────────────────
+   CONSULTORIO + MAPA
+───────────────────────────────────────────── */
+.consultorio-section {
+  padding: 160px 0;
+  background: var(--white);
+}
+.consultorio-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+.consultorio-left {}
+
+.consultorio-display {
+  font-family: var(--font-display);
+  font-weight: 200;
+  font-size: clamp(2.4rem, 4vw, 3.8rem);
+  line-height: 1.1;
+  color: var(--ink);
+  margin-bottom: 32px;
+  margin-top: 8px;
+}
+.consultorio-display em {
+  font-style: italic;
+  color: var(--teal);
+}
+
+.consultorio-body {
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: var(--ink-60);
+  line-height: 1.9;
+  margin-bottom: 40px;
+}
+
+.consultorio-feats {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-top: 1px solid var(--ink-10);
+}
+.consultorio-feat {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--ink-10);
+  transition: all 0.3s;
+}
+.consultorio-feat:hover { padding-left: 8px; }
+.consultorio-feat-icon {
+  width: 36px;
+  height: 36px;
+  background: var(--cream);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.3s;
+}
+.consultorio-feat:hover .consultorio-feat-icon {
+  background: var(--teal);
+}
+.consultorio-feat-icon svg {
+  width: 16px; height: 16px;
+  color: var(--teal);
+  transition: color 0.3s;
+}
+.consultorio-feat:hover .consultorio-feat-icon svg { color: var(--white); }
+.consultorio-feat-text {
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--ink);
+}
+
+.consultorio-cta {
+  margin-top: 40px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--ink);
+  color: var(--white);
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 15px 28px;
+  border-radius: 100px;
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  transition: all 0.35s var(--ease-out);
+  position: relative;
+  overflow: hidden;
+}
+.consultorio-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--teal);
+  transform: translateX(-100%);
+  transition: transform 0.4s var(--ease-out);
+}
+.consultorio-cta:hover::before { transform: none; }
+.consultorio-cta span, .consultorio-cta svg { position: relative; }
+.consultorio-cta:hover { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(43,179,168,0.3); }
+
+/* Map */
+.consultorio-right {}
+.map-card {
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--ink-10);
+  box-shadow: 0 40px 80px rgba(0,0,0,0.07);
+}
+.map-header {
+  padding: 20px 24px;
+  background: var(--cream);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border-bottom: 1px solid var(--ink-10);
+}
+.map-dot { width: 8px; height: 8px; background: var(--teal); border-radius: 50%; }
+.map-header-text {}
+.map-header-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+.map-header-sub {
+  font-size: 0.72rem;
+  font-weight: 300;
+  color: var(--ink-60);
+  margin-top: 2px;
+}
+.map-embed {
+  display: block;
+  width: 100%;
+  height: 380px;
+  border: none;
+  filter: saturate(0.8) contrast(1.05);
+  transition: filter 0.4s;
+}
+.map-card:hover .map-embed { filter: saturate(1) contrast(1); }
+
+@media(max-width:900px){
+  .consultorio-grid { grid-template-columns: 1fr; gap: 60px; }
+}
+
+/* ─────────────────────────────────────────────
+   BENEFICIOS
+───────────────────────────────────────────── */
+.benefits-section {
+  padding: 160px 0;
+  background: var(--cream);
+}
+.benefits-top {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 80px;
+  gap: 40px;
+}
+.benefits-display {
+  font-family: var(--font-display);
+  font-weight: 200;
+  font-size: clamp(2.4rem, 4vw, 3.8rem);
+  line-height: 1.1;
+  color: var(--ink);
+  margin-top: 8px;
+}
+.benefits-display em { font-style: italic; color: var(--ink-60); }
+
+.benefits-sub {
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: var(--ink-60);
+  line-height: 1.8;
+  max-width: 300px;
+  padding-bottom: 6px;
+}
+
+.benefits-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--ink-10);
+  border: 1px solid var(--ink-10);
+  border-radius: 20px;
+  overflow: hidden;
+}
+.benefit-row {
+  display: grid;
+  grid-template-columns: 80px 1fr auto;
+  align-items: center;
+  gap: 32px;
+  padding: 36px 40px;
+  background: var(--cream);
+  transition: all 0.4s var(--ease-out);
+  cursor: default;
+}
+.benefit-row:hover {
+  background: var(--white);
+  padding-left: 56px;
+}
+.benefit-row-num {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 300;
+  color: var(--ink-30);
+}
+.benefit-row-body {}
+.benefit-row-title {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.benefit-row-desc {
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: var(--ink-60);
+  line-height: 1.6;
+}
+.benefit-row-tag {
+  background: var(--white);
+  border: 1px solid var(--ink-10);
+  border-radius: 100px;
+  padding: 6px 14px;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--ink-60);
+  white-space: nowrap;
+  transition: all 0.3s;
+}
+.benefit-row:hover .benefit-row-tag {
+  border-color: rgba(43,179,168,0.3);
+  color: var(--teal);
+  background: rgba(43,179,168,0.05);
+}
+
+@media(max-width:768px){
+  .benefits-top { flex-direction: column; align-items: flex-start; }
+  .benefit-row { grid-template-columns: 48px 1fr; gap: 16px; padding: 24px; }
+  .benefit-row-tag { display: none; }
+  .benefit-row:hover { padding-left: 32px; }
+}
+
+/* ─────────────────────────────────────────────
+   CTA FINAL
+───────────────────────────────────────────── */
+.cta-section {
+  padding: 200px 0;
+  background: var(--white);
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+/* Giant background text */
+.cta-bg-word {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-display);
+  font-size: clamp(12rem, 22vw, 22rem);
+  font-weight: 200;
+  color: var(--cream);
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.cta-inner {
+  position: relative;
+  z-index: 1;
+}
+.cta-inner .eyebrow { justify-content: center; }
+.cta-inner .eyebrow::before { display: none; }
+
+.cta-display {
+  font-family: var(--font-display);
+  font-weight: 200;
+  font-size: clamp(2.8rem, 6vw, 6rem);
+  line-height: 1.05;
+  color: var(--ink);
+  margin-bottom: 28px;
+}
+.cta-display em {
+  font-style: italic;
+  color: var(--teal);
+}
+
+.cta-sub {
+  font-size: 0.95rem;
+  font-weight: 300;
+  color: var(--ink-60);
+  line-height: 1.8;
+  max-width: 420px;
+  margin: 0 auto 56px;
+}
+
+.cta-btn-big {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--ink);
+  color: var(--white);
+  font-size: 0.88rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  padding: 20px 48px;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: all 0.4s var(--ease-out);
+  position: relative;
+  overflow: hidden;
+}
+.cta-btn-big::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--teal), var(--teal-mid));
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.cta-btn-big:hover::before { opacity: 1; }
+.cta-btn-big span, .cta-btn-big svg { position: relative; }
+.cta-btn-big:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 24px 60px rgba(43,179,168,0.4);
+}
+
+.cta-note {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 300;
+  color: var(--ink-30);
+  margin-top: 20px;
+  letter-spacing: 0.06em;
+}
+
+/* ─────────────────────────────────────────────
+   FOOTER
+───────────────────────────────────────────── */
+footer {
+  background: var(--ink);
+  padding: 80px 0 48px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 60px;
+  padding-bottom: 60px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  margin-bottom: 40px;
+}
+.footer-brand-name {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 200;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+.footer-brand-tag {
+  font-size: 0.7rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.25);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.footer-brand-desc {
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.35);
+  line-height: 1.8;
+  max-width: 280px;
+}
+.footer-col-title {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 20px;
+}
+.footer-col-items {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.footer-col-items a, .footer-col-items span {
+  font-size: 0.82rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.55);
+  text-decoration: none;
+  transition: color 0.3s;
+  line-height: 1.5;
+}
+.footer-col-items a:hover { color: var(--teal); }
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.footer-copy {
+  font-size: 0.72rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.2);
+  letter-spacing: 0.06em;
+}
+.footer-wa-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(37,211,102,0.1);
+  border: 1px solid rgba(37,211,102,0.2);
+  color: #25D366;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 10px 20px;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+.footer-wa-btn:hover { background: #25D366; color: white; border-color: #25D366; }
+
+@media(max-width:768px){
+  .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+}
+
+/* ─────────────────────────────────────────────
+   FLOATING WA
+───────────────────────────────────────────── */
+.float-wa {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 900;
+}
+.float-wa-btn {
+  width: 58px;
+  height: 58px;
+  background: #25D366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 32px rgba(37,211,102,0.45);
+  text-decoration: none;
+  transition: all 0.35s var(--ease-out);
+  animation: waBounce 3s ease-in-out infinite;
+}
+.float-wa-btn:hover {
+  transform: scale(1.12);
+  box-shadow: 0 16px 48px rgba(37,211,102,0.5);
+  animation: none;
+}
+.float-wa-btn svg { width: 26px; height: 26px; }
+.float-wa-tooltip {
+  position: absolute;
+  right: 68px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--ink);
+  color: var(--white);
+  font-size: 0.75rem;
+  font-weight: 400;
+  padding: 8px 16px;
+  border-radius: 8px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+.float-wa-tooltip::after {
+  content: '';
+  position: absolute;
+  right: -6px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 6px solid transparent;
+  border-left-color: var(--ink);
+  border-right: none;
+}
+.float-wa:hover .float-wa-tooltip { opacity: 1; }
+@keyframes waBounce {
+  0%,100%{ transform: translateY(0); }
+  50%{ transform: translateY(-6px); }
+}
+
+/* ─────────────────────────────────────────────
+   DIVIDERS
+───────────────────────────────────────────── */
+.fade-divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--beige), transparent);
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav class="nav" id="nav">
+  <a href="#" class="nav-logo">Luchi González Ramella</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#ted">Charlas</a></li>
+      <li><a href="#consultorio">Consultorio</a></li>
+    </ul>
+    <a href="https://api.whatsapp.com/message/TEMV7X7PVFRUL1?autoload=1&app_absent=0" class="nav-btn" target="_blank">Agendar consulta</a>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-mesh"></div>
+  <div class="hero-ring"></div>
+  <div class="hero-dots"></div>
+
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-pill">Nutricionista Profesional</div>
+      <div class="hero-eyebrow-line"></div>
+      <div class="hero-eyebrow-text">Necochea · Buenos Aires · Argentina</div>
+    </div>
+
+    <h1 class="hero-title">
+      Nutrición personalizada<br>
+      para mejorar<br>
+      <em>tu salud y bienestar</em>
+    </h1>
+
+    <div class="hero-sub-row">
+      <p class="hero-sub">
+        Acompañamiento real, plan a medida y resultados sostenibles. Porque cada cuerpo tiene su propia historia.
+      </p>
+      <div class="hero-cta-group">
+        <a href="https://api.whatsapp.com/message/TEMV7X7PVFRUL1?autoload=1&app_absent=0" class="btn-hero" target="_blank">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.554 4.112 1.523 5.84L0 24l6.338-1.501A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.013-1.376l-.36-.214-3.727.882.939-3.625-.235-.373A9.818 9.818 0 1112 21.818z"/></svg>
+          Agendá tu consulta
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#sobre-mi" class="btn-hero-ghost">Conocer más</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-stats-strip">
+    <div class="hero-stat-item">
+      <div class="hero-stat-num">+8</div>
+      <div class="hero-stat-label">Años de trayectoria</div>
+      <div class="hero-stat-line"></div>
+    </div>
+    <div class="hero-stat-item">
+      <div class="hero-stat-num">100%</div>
+      <div class="hero-stat-label">Personalizado</div>
+      <div class="hero-stat-line"></div>
+    </div>
+  </div>
+
+  <div class="scroll-cue">
+    <div class="scroll-cue-track"></div>
+    <div class="scroll-cue-text">Scroll</div>
+  </div>
+
+  <div class="hero-bar"></div>
+</section>
+
+<!-- ── MARQUEE ── -->
+<div class="marquee-strip">
+  <div class="marquee-inner">
+    <span>Nutrición Personalizada</span>
+    <span>Planes a Medida</span>
+    <span>Consultorio en Necochea</span>
+    <span>Antropometría Profesional</span>
+    <span>Conferencista TED</span>
+    <span>Hábitos Sostenibles</span>
+    <span>Seguimiento Continuo</span>
+    <span>Salud Integral</span>
+    <!-- repeat for seamless loop -->
+    <span>Nutrición Personalizada</span>
+    <span>Planes a Medida</span>
+    <span>Consultorio en Necochea</span>
+    <span>Antropometría Profesional</span>
+    <span>Conferencista TED</span>
+    <span>Hábitos Sostenibles</span>
+    <span>Seguimiento Continuo</span>
+    <span>Salud Integral</span>
+  </div>
+</div>
+
+<!-- ── SOBRE MÍ ── -->
+<section class="about-section" id="sobre-mi">
+  <div class="section-wrap">
+    <div class="about-grid">
+      <div class="about-photo-col reveal">
+        <div class="about-photo-frame">
+          <div class="about-photo-inner">
+            <svg class="photo-placeholder-icon" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="40" cy="28" r="18" fill="rgba(43,179,168,0.25)"/>
+              <path d="M8 72c0-17.673 14.327-32 32-32s32 14.327 32 32" fill="rgba(43,179,168,0.2)"/>
+            </svg>
+            <div class="photo-placeholder-label">Tu foto aquí</div>
+          </div>
+        </div>
+        <div class="about-corner-box"></div>
+        <div class="about-teal-bar"></div>
+        <div class="about-float-card">
+          <div class="about-float-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <h5>Atención profesional</h5>
+          <p>Consultorio equipado en Necochea, Buenos Aires</p>
+        </div>
+      </div>
+
+      <div class="about-text-col">
+        <span class="eyebrow reveal">Sobre mí</span>
+        <h2 class="about-display reveal d1">
+          Una nutricionista<br>que trabaja desde<br>
+          <em>lo real</em>
+        </h2>
+        <p class="about-body reveal d2">
+          Soy <strong>Luchi González Ramella</strong>, nutricionista con años de trayectoria acompañando personas que quieren mejorar su salud de verdad. No te voy a dar una dieta genérica ni promesas vacías.
+        </p>
+        <p class="about-body reveal d2">
+          Mi enfoque integra la ciencia de la nutrición con la realidad de cada persona: sus hábitos, su historia y su ritmo de vida. Porque comer bien tiene que ser posible, no perfecto.
+        </p>
+        <div class="about-rule reveal d3"></div>
+        <div class="about-values reveal d3">
+          <div class="about-val">
+            <div class="about-val-title">Acompañamiento genuino</div>
+            <div class="about-val-text">Cada consulta es única, sin plantillas ni respuestas automáticas.</div>
+          </div>
+          <div class="about-val">
+            <div class="about-val-title">Resultados sostenibles</div>
+            <div class="about-val-text">Cambios que se integran a tu vida y se mantienen en el tiempo.</div>
+          </div>
+          <div class="about-val">
+            <div class="about-val-title">Enfoque integral</div>
+            <div class="about-val-text">Alimentación, hábitos y bienestar, todo en conjunto.</div>
+          </div>
+          <div class="about-val">
+            <div class="about-val-title">Divulgación activa</div>
+            <div class="about-val-text">Conferencista con presencia en charlas y comunidad digital.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="fade-divider"></div>
+
+<!-- ── SERVICIOS ── -->
+<section class="services-section" id="servicios">
+  <div class="section-wrap">
+    <div class="services-header">
+      <div class="services-header-left reveal">
+        <span class="eyebrow">Servicios</span>
+        <h2 class="services-title">
+          Lo que podemos<br>
+          <em>trabajar juntos</em>
+        </h2>
+      </div>
+      <div class="services-header-right reveal d2">
+        Cada servicio está pensado para adaptarse a tu realidad, tu cuerpo y tus objetivos concretos.
+      </div>
+    </div>
+
+    <div class="services-grid reveal">
+      <div class="service-card">
+        <div class="service-num">01</div>
+        <div class="service-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+        </div>
+        <div class="service-name">Planes Personalizados</div>
+        <div class="service-desc">Alimentación diseñada desde cero para tu cuerpo, tus objetivos y tu estilo de vida. Sin plantillas.</div>
+        <div class="service-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-num">02</div>
+        <div class="service-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"/></svg>
+        </div>
+        <div class="service-name">Antropometría</div>
+        <div class="service-desc">Medición y evaluación corporal profesional para trazarte metas reales y medir tu evolución con datos.</div>
+        <div class="service-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-num">03</div>
+        <div class="service-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        </div>
+        <div class="service-name">Seguimiento Continuo</div>
+        <div class="service-desc">Revisiones periódicas para ajustar el plan según tu evolución real y mantener la motivación activa.</div>
+        <div class="service-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-num">04</div>
+        <div class="service-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+        </div>
+        <div class="service-name">Asesoramiento Nutricional</div>
+        <div class="service-desc">Consultas orientadas a resolver dudas, mejorar hábitos y construir una relación sana con la comida.</div>
+        <div class="service-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:56px;" class="reveal">
+      <a href="https://api.whatsapp.com/message/TEMV7X7PVFRUL1?autoload=1&app_absent=0" class="btn-hero" target="_blank" style="display:inline-flex;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.554 4.112 1.523 5.84L0 24l6.338-1.501A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.013-1.376l-.36-.214-3.727.882.939-3.625-.235-.373A9.818 9.818 0 1112 21.818z"/></svg>
+        Consultar por WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── AUTORIDAD / TED ── -->
+<section class="authority-section" id="ted">
+
+  <div class="authority-top">
+    <div class="reveal">
+      <span class="eyebrow" style="color:var(--teal)">Trayectoria</span>
+      <h2 class="authority-headline">
+        Más allá<br>del consultorio.<br>
+        <em>Divulgación</em><br>
+        con <span class="teal">impacto</span>.
+      </h2>
+    </div>
+    <div class="reveal d2">
+      <p>
+        La nutrición cambia vidas cuando se comunica bien. Por eso llevé el mensaje a escenarios más grandes — charlas en vivo, audiencias masivas y contenido que generó miles de visualizaciones.
+      </p>
+      <div class="authority-pills">
+        <div class="authority-pill highlight">Conferencista</div>
+        <div class="authority-pill highlight">Estilo TED</div>
+        <div class="authority-pill">Divulgadora</div>
+        <div class="authority-pill">Comunidad activa</div>
+        <div class="authority-pill">Miles de visualizaciones</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VIDEO EMBED -->
+  <div class="video-container reveal">
+    <div class="video-label">
+      <div class="video-label-tag">
+        <div class="video-label-tag-dot"></div>
+        Charla destacada
+      </div>
+      <div class="video-label-title">Mirá la charla que marcó a miles de personas</div>
+    </div>
+    <div class="video-frame-wrap">
+      <!--
+        ╔══════════════════════════════════════════════════════════╗
+        ║  INSTRUCCIÓN: Reemplazá VIDEO_ID_AQUI por el ID real    ║
+        ║  del video de YouTube. Ej: si la URL es                 ║
+        ║  youtube.com/watch?v=dQw4w9WgXcQ → ponés dQw4w9WgXcQ   ║
+        ╚══════════════════════════════════════════════════════════╝
+      -->
+      <iframe
+        id="yt-iframe"
+        src="about:blank"
+        data-src="https://www.youtube.com/embed/VIDEO_ID_AQUI?rel=0&modestbranding=1&color=white"
+        title="Charla de Luchi González Ramella"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+      <div class="video-overlay" id="video-overlay">
+        <div class="video-play-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+        <div class="video-overlay-title">"La alimentación que transforma"</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATS ROW -->
+  <div class="authority-stats-row">
+    <div class="authority-stat reveal">
+      <div class="authority-stat-num">Miles<sup>+</sup></div>
+      <div class="authority-stat-label">Visualizaciones en charlas y<br>contenido de divulgación</div>
+    </div>
+    <div class="authority-stat reveal d2">
+      <div class="authority-stat-num">TED<sup>★</sup></div>
+      <div class="authority-stat-label">Formato de charla de alto impacto<br>con audiencia en vivo</div>
+    </div>
+    <div class="authority-stat reveal d3">
+      <div class="authority-stat-num">+8<sup>años</sup></div>
+      <div class="authority-stat-label">De trayectoria profesional en<br>nutrición y salud integral</div>
+    </div>
+  </div>
+
+  <!-- QUOTE -->
+  <div class="authority-quote reveal">
+    <div class="quote-mark-big">"</div>
+    <div>
+      <p class="quote-body">
+        La nutrición no es una dieta. Es una forma de entenderte y cuidarte para toda la vida.
+      </p>
+      <p class="quote-attr">— Luchi González Ramella · Nutricionista & Conferencista</p>
+    </div>
+  </div>
+
+</section>
+
+<!-- ── CONSULTORIO + MAPA ── -->
+<section class="consultorio-section" id="consultorio">
+  <div class="section-wrap">
+    <div class="consultorio-grid">
+      <div class="consultorio-left">
+        <span class="eyebrow reveal">Espacio físico</span>
+        <h2 class="consultorio-display reveal d1">
+          Un consultorio preparado<br>
+          <em>para vos</em>
+        </h2>
+        <p class="consultorio-body reveal d2">
+          Atención presencial en Necochea, Buenos Aires. Un espacio diseñado para que puedas evaluarte, hacer seguimiento y sentirte acompañada/o de forma completa y profesional.
+        </p>
+        <div class="consultorio-feats reveal d2">
+          <div class="consultorio-feat">
+            <div class="consultorio-feat-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            </div>
+            <div class="consultorio-feat-text">Necochea, Buenos Aires, Argentina</div>
+          </div>
+          <div class="consultorio-feat">
+            <div class="consultorio-feat-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+            </div>
+            <div class="consultorio-feat-text">Evaluación antropométrica completa en consultorio</div>
+          </div>
+          <div class="consultorio-feat">
+            <div class="consultorio-feat-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            </div>
+            <div class="consultorio-feat-text">Turnos con atención personalizada</div>
+          </div>
+          <div class="consultorio-feat">
+            <div class="consultorio-feat-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+            </div>
+            <div class="consultorio-feat-text">Ambiente cálido, profesional y preparado</div>
+          </div>
+        </div>
+        <a href="https://api.whatsapp.com/message/TEMV7X7PVFRUL1?autoload=1&app_absent=0" class="consultorio-cta reveal d3" target="_blank">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.554 4.112 1.523 5.84L0 24l6.338-1.501A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.013-1.376l-.36-.214-3.727.882.939-3.625-.235-.373A9.818 9.818 0 1112 21.818z"/></svg>
+          <span>Consultar y agendar turno</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <!-- MAP -->
+      <div class="consultorio-right reveal d2">
+        <div class="map-card">
+          <div class="map-header">
+            <div class="map-dot"></div>
+            <div class="map-header-text">
+              <div class="map-header-title">Consultorio · Necochea</div>
+              <div class="map-header-sub">Buenos Aires, Argentina</div>
+            </div>
+          </div>
+          <!--
+            Mapa de Necochea, Buenos Aires.
+            Si tenés dirección exacta, reemplazá el q= en la URL del iframe.
+          -->
+          <iframe
+            class="map-embed"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d25282.63!2d-58.7458!3d-38.5544!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95914e48c6e8555d%3A0xc6d27a52d17b7cc4!2sNecochea%2C%20Buenos%20Aires%2C%20Argentina!5e0!3m2!1ses!2sar!4v1700000000000"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Consultorio en Necochea, Buenos Aires">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="fade-divider"></div>
+
+<!-- ── BENEFICIOS ── -->
+<section class="benefits-section" id="beneficios">
+  <div class="section-wrap">
+    <div class="benefits-top">
+      <div class="reveal">
+        <span class="eyebrow">Por qué trabajar conmigo</span>
+        <h2 class="benefits-display">
+          Lo que vas a ganar<br>
+          <em>con el proceso</em>
+        </h2>
+      </div>
+      <p class="benefits-sub reveal d2">
+        Resultados reales, acompañamiento genuino y cambios que se quedan.
+      </p>
+    </div>
+
+    <div class="benefits-list reveal">
+      <div class="benefit-row">
+        <div class="benefit-row-num">01</div>
+        <div class="benefit-row-body">
+          <div class="benefit-row-title">Hábitos que se sostienen en el tiempo</div>
+          <div class="benefit-row-desc">Sin restricciones insostenibles. Cambios reales que se integran naturalmente a tu vida cotidiana.</div>
+        </div>
+        <div class="benefit-row-tag">Largo plazo</div>
+      </div>
+      <div class="benefit-row">
+        <div class="benefit-row-num">02</div>
+        <div class="benefit-row-body">
+          <div class="benefit-row-title">Más energía y mejor estado de ánimo</div>
+          <div class="benefit-row-desc">Una alimentación bien calibrada impacta directamente en cómo te sentís cada día.</div>
+        </div>
+        <div class="benefit-row-tag">Bienestar</div>
+      </div>
+      <div class="benefit-row">
+        <div class="benefit-row-num">03</div>
+        <div class="benefit-row-body">
+          <div class="benefit-row-title">Resultados reales y medibles</div>
+          <div class="benefit-row-desc">Objetivos claros, seguimiento constante y métricas que muestran tu evolución concreta.</div>
+        </div>
+        <div class="benefit-row-tag">Datos reales</div>
+      </div>
+      <div class="benefit-row">
+        <div class="benefit-row-num">04</div>
+        <div class="benefit-row-body">
+          <div class="benefit-row-title">Una relación sana con la comida</div>
+          <div class="benefit-row-desc">Sin culpa, sin obsesiones. Aprendés a elegir bien sin perder el placer de comer.</div>
+        </div>
+        <div class="benefit-row-tag">Equilibrio</div>
+      </div>
+      <div class="benefit-row">
+        <div class="benefit-row-num">05</div>
+        <div class="benefit-row-body">
+          <div class="benefit-row-title">Acompañamiento profesional en cada etapa</div>
+          <div class="benefit-row-desc">No estás sola/o en el proceso. Presencia real en cada revisión y ajuste del camino.</div>
+        </div>
+        <div class="benefit-row-tag">Apoyo continuo</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA FINAL ── -->
+<section class="cta-section">
+  <div class="cta-bg-word">Consulta</div>
+  <div class="section-wrap">
+    <div class="cta-inner">
+      <div class="eyebrow reveal" style="display:inline-flex; justify-content:center;">El primer paso</div>
+      <h2 class="cta-display reveal d1">
+        Empezá hoy<br>
+        tu <em>camino</em>
+      </h2>
+      <p class="cta-sub reveal d2">
+        Una consulta es todo lo que necesitás para entender qué te falta y cómo podemos trabajarlo juntas/os.
+      </p>
+      <div class="reveal d3">
+        <a href="https://api.whatsapp.com/message/TEMV7X7PVFRUL1?autoload=1&app_absent=0" class="cta-btn-big" target="_blank">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.554 4.112 1.523 5.84L0 24l6.338-1.501A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.013-1.376l-.36-.214-3.727.882.939-3.625-.235-.373A9.818 9.818 0 1112 21.818z"/></svg>
+          <span>Agendá tu consulta ahora</span>
+        </a>
+        <span class="cta-note">Respondemos por WhatsApp · Necochea, Buenos Aires</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="section-wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-name">Luchi González Ramella</div>
+        <div class="footer-brand-tag">Nutrición Viva Simple Soberana</div>
+        <div class="footer-brand-desc">
+          Nutricionista profesional con consultorio en Necochea, Buenos Aires. Acompañamiento real para resultados sostenibles.
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Servicios</div>
+        <div class="footer-col-items">
+          <span>Planes Personalizados</span>
+          <span>Antropometría</span>
+          <span>Seguimiento Continuo</span>
+          <span>Asesoramiento Nutricional</span>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Contacto</div>
+        <div class="footer-col-items">
+          <span>Necochea, Buenos Aires</span>
+          <span>Argentina</span>
+          <a href="https://api.whatsapp.com/message/TEMV7X7PVFRUL1?autoload=1&app_absent=0" target="_blank">WhatsApp</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 Luchi González Ramella · Todos los derechos reservados</div>
+      <a href="https://api.whatsapp.com/message/TEMV7X7PVFRUL1?autoload=1&app_absent=0" class="footer-wa-btn" target="_blank">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.554 4.112 1.523 5.84L0 24l6.338-1.501A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.013-1.376l-.36-.214-3.727.882.939-3.625-.235-.373A9.818 9.818 0 1112 21.818z"/></svg>
+        Escribir por WhatsApp
+      </a>
+    </div>
+  </div>
+</footer>
+
+<!-- ── FLOATING WHATSAPP ── -->
+<div class="float-wa">
+  <div class="float-wa-tooltip">Consultar ahora</div>
+  <a href="https://api.whatsapp.com/message/TEMV7X7PVFRUL1?autoload=1&app_absent=0" class="float-wa-btn" target="_blank" aria-label="Contactar por WhatsApp">
+    <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.554 4.112 1.523 5.84L0 24l6.338-1.501A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.013-1.376l-.36-.214-3.727.882.939-3.625-.235-.373A9.818 9.818 0 1112 21.818z"/></svg>
+  </a>
+</div>
+
+<script>
+/* ── Navbar ── */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('solid', window.scrollY > 50);
+}, { passive: true });
+
+/* ── Scroll reveal ── */
+const reveals = document.querySelectorAll('.reveal');
+const ro = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('on');
+      ro.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+reveals.forEach(el => ro.observe(el));
+
+/* ── Video overlay: load iframe only when play is clicked ── */
+const overlay  = document.getElementById('video-overlay');
+const iframe   = document.getElementById('yt-iframe');
+if (overlay && iframe) {
+  overlay.addEventListener('click', () => {
+    const src = iframe.dataset.src;
+    if (src && !src.includes('VIDEO_ID_AQUI')) {
+      iframe.src = src + '&autoplay=1';
+    } else {
+      /* Si no se configuró el ID, mostrar mensaje */
+      iframe.src = 'about:blank';
+      overlay.innerHTML = '<div style="color:rgba(255,255,255,0.5);font-family:var(--font-body);font-size:0.9rem;padding:40px;text-align:center;">Reemplazá VIDEO_ID_AQUI con el ID de YouTube</div>';
+    }
+    overlay.classList.add('hidden');
+  });
+}
+
+/* ── Smooth scroll ── */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+  });
+});
+</script>
+</body>
+</html>
